@@ -47,14 +47,19 @@ for i in os.listdir('.'):
     else:
         pass
 
+
+SNI_HOST_DEFAULT = 'vod-zlr2.tv360.vn'
+
 if passed == 1 :
        SNI_HOST = open('sni.log','r').readline().strip('\n')
        #print(SNI_HOST)
 else:
-
     os.system('touch sni.log')
 
-    SNI_HOST = input('Enter SNI host :')
+    SNI_HOST = input('Enter SNI host (default: {SNI_HOST_DEFAULT}): ').strip()
+    if not SNI_HOST:
+        SNI_HOST = SNI_HOST_DEFAULT  # Default SNI host
+    
     file=open('sni.log','w')
     file.write(SNI_HOST)
     file.close()
