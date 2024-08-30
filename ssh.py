@@ -12,11 +12,20 @@ R = bg + '\033[31m'
 def ssh_client(socks5_port, host, port, user, password):
     try:
         global soc, payload
+        
+         # Create a socket connecting to inject_host and inject_port
+        inject_host = '127.0.0.1'
+        inject_port = '8980'
+        
+        soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        soc.connect((inject_host, inject_port))
+        
+        
         dynamic_port_forwarding = '-CND {}'.format(socks5_port)
         username = user
         password = password
-        inject_host = '127.0.0.1'
-        inject_port = '8980'
+        
+        
         payload = f'CONNECT {host}:{port} HTTP/1.0\r\n\r\n'
         
         # Initialize the socket connection

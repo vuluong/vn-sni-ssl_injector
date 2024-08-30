@@ -92,7 +92,7 @@ def conection(c, a):
          
     	
          import ssl
-         ctx = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
          s = ctx.wrap_socket(s, server_hostname=str(SNI_HOST))
     	#print(s)
     	# Direct
